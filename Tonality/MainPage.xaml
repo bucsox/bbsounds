@@ -11,8 +11,8 @@
     xmlns:Primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone"
     xmlns:Converters="clr-namespace:Coding4Fun.Toolkit.Controls.Converters;assembly=Coding4Fun.Toolkit.Controls"
     xmlns:ownConverters="clr-namespace:Tonality.Converters"
-    xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.SampleDataTest"
-    
+    xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.WalterSampleDataSource1"
+    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True}"
     x:Class="Tonality.MainPage"
     mc:Ignorable="d"
     SupportedOrientations="Portrait"  Orientation="Portrait"
@@ -50,28 +50,27 @@
     	</Style>
 
     	<DataTemplate x:Key="SoundTileDataTemplate">
-            <Grid Margin="10,14,-20,6" 
-                  >
-                <StackPanel>
-                    <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu IsZoomEnabled="False" >
-                            <toolkit:MenuItem
+    		<StackPanel>
+    			<toolkit:ContextMenuService.ContextMenu>
+    				<toolkit:ContextMenu IsZoomEnabled="False" >
+    					<toolkit:MenuItem
     						Header="Save as Ringtone"  Command="{Binding SaveSoundAsRingtone}" CommandParameter="{Binding FilePath}" />
-                        </toolkit:ContextMenu>
+    				</toolkit:ContextMenu>
 
-                    </toolkit:ContextMenuService.ContextMenu>
-
-                    <Grid  
-    				     Height="72"  Margin="10,6,-40-5"
+    			</toolkit:ContextMenuService.ContextMenu>
+                
+    			<Grid  
+    				Margin="0,-50,0,0" Height="72" Width="Auto" 
+                     
+                          
     				toolkit:TiltEffect.IsTiltEnabled="True">
-                        <Border BorderBrush="white" BorderThickness="3" CornerRadius="6,6,6,6" Opacity=".4" Background="#FF1D5708"/>
-                        <TextBlock Text="{Binding Title}" FontSize="19" TextWrapping="Wrap" Width="390" FontFamily=".Fonts/123Sketch.ttf#sketch123" TextAlignment="Center" Margin="5,5,5,4"/>
-                        <Image Source="/Assets/tiles/TRXHSBRGIcon.png" Width="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,6,6" Visibility="{Binding Status, Converter={StaticResource DownloadStatusToIconVisibilityConverter}}" />
-                        <ProgressBar Height="12" VerticalAlignment="Bottom" Padding="0" Margin="0" Foreground="{StaticResource PhoneForegroundBrush}" Value="{Binding DownloadProgress}" Visibility="{Binding Status, Converter={StaticResource DownloadStatusToProgressBarVisibilityConverter}}"/>
-                    </Grid>
-                </StackPanel>
-            </Grid>
-        </DataTemplate>
+    				<Border BorderBrush="white" BorderThickness="3" CornerRadius="6,6,6,6" Background="black"/>
+    				<TextBlock Text="{Binding Title}" FontSize="19" TextWrapping="Wrap" Width="390" FontFamily=".Fonts/123Sketch.ttf#sketch123" TextAlignment="Center" Margin="5,5,5,4"/>
+    				<Image Source="/Assets/tiles/TRXHSBRGIcon.png" Width="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,6,6" Visibility="{Binding Status, Converter={StaticResource DownloadStatusToIconVisibilityConverter}}" />
+    				<ProgressBar Height="12" VerticalAlignment="Bottom" Padding="0" Margin="0" Foreground="{StaticResource PhoneForegroundBrush}" Value="{Binding DownloadProgress}" Visibility="{Binding Status, Converter={StaticResource DownloadStatusToProgressBarVisibilityConverter}}"/>
+    			</Grid>
+    		</StackPanel>
+    	</DataTemplate>
 
     	<DataTemplate x:Key="groupHeaderTemplate">
     		<Border Background="Transparent">
@@ -205,16 +204,15 @@
                 <controls:PivotItem.Background>
                     <ImageBrush ImageSource="/images/waltwhite.jpg" Stretch="UniformToFill"/>
                 </controls:PivotItem.Background>
-                
+                <!--Double line list with text wrapping-->
                 <controls:LongListSelector x:Name="LongList6"
-					Margin="0,0,-12,0"                        
+					Margin="0,10,0,0"                        
 					ItemsSource="{Binding Walter.Items}"
 					LayoutMode="Grid"                       
-					GridCellSize="380,100"
+					GridCellSize="400,72"
 					ItemTemplate="{StaticResource SoundTileDataTemplate}"
 					SelectionChanged="LongListSelector_SelectionChanged"
-					IsGroupingEnabled="True"
-                                         />
+					IsGroupingEnabled="True"              />
             </controls:PivotItem>
 
 
